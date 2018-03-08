@@ -4,5 +4,5 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns=[
-    url('^$',views.login,name='registration/login.html')
+    url('^$',views.index,name='index.html'),
 ]

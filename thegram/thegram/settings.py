@@ -124,4 +124,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT='home'
+LOGIN_REDIRECT='/'
