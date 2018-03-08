@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('gramygram.urls')),
     url(r'^accounts/',include('registration.backends.simple.urls')),
+    url(r'^login/$',views.login,name='login'),
     url(r'^logout/$', views.logout, {"next_page": '/'})
 ]
