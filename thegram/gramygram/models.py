@@ -9,3 +9,7 @@ class User(models.Model):
 class Image(models.Model):
     image =models.ImageField(upload_to='images/',blank=True)
     caption=models.CharField(max_length=100)
+    
+
+    def save_image(self):
+        self.save
