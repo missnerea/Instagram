@@ -7,5 +7,5 @@ class User(models.Model):
     password = models.CharField(max_length=80)
 
 class Image(models.Model):
-    image =models.ImageField(upload_to='thegram/',blank=True)
+    image =models.ImageField(upload_to='images/',blank=True)
     caption=models.CharField(max_length=100)
