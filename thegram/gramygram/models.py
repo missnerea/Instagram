@@ -7,9 +7,15 @@ class User(models.Model):
     password = models.CharField(max_length=80)
 
 class Image(models.Model):
-    image =models.ImageField(upload_to='images/',blank=True)
-    caption=models.CharField(max_length=100)
     
+    user = models.ForeignKey(User,null = True)
+    image_image =models.ImageField(upload_to='images/',blank=True)
+    caption=models.CharField(max_length=100)
+         
+    @classmethod
+    def this_image(cls):
+        img = cls.objects.all()
+        return img 
 
     def save_image(self):
         self.save

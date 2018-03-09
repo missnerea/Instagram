@@ -18,9 +18,11 @@
       <a class="Instagram-card-user-name" href="https://www.instagram.com/rogersbase/"> rogersbase </a>
       <div class="Instagram-card-time"> 1 min </div>
     </div>
-    {% for image in gramygram %}
+    {% for img_item in img %}
     <div class="Instagram-card-image">
-      <img src= "{{image.image.url}}" height=600px/>
+      {%if img_item.image_image%}
+      <img src= "{{img_item.image_image.url}}" class="img-responsive" height=600px/>
+      {% endif %}
     </div>
 
     <div class="Instagram-card-content">
