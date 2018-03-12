@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Image
 from django.views.generic import RedirectView
+from . forms import NewCommentForm, NewStatusForm
 
 
 # Create your views here.
