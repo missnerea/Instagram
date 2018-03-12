@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'gramygram',
     'bootstrap3',
     'bootstrap4',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -21,3 +21,14 @@ class Image(models.Model):
 
     def save_image(self):
         self.save
+
+    
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=200)
+    user = models.ForeignKey(User, null=True)
+    image_image = models.ForeignKey(Image, null=True)
+    time_comment = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+       ordering=['-time_comment'] 
