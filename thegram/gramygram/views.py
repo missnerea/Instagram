@@ -26,3 +26,17 @@ class ImageLikeToggle(RedirectView):
             else:
                 obj.likes.add(user)
         return url_
+
+@login_required(login_url='/accounts/login')
+def new_comment(request):
+    current_user= request.user
+    if request.method == 'POST'
+       form =  NewCommentForm(request.POST, request.FILES) 
+       if form.is_valid():
+        comment = form.save(commit=False)
+        comment.editor=current_user
+        comment.save()
+
+    else:
+        form= NewCommentForm()
+        return render (request,'new_comment.html',{"form":form})
