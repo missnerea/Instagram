@@ -30,7 +30,7 @@ class ImageLikeToggle(RedirectView):
 @login_required(login_url='/accounts/login')
 def new_comment(request):
     current_user= request.user
-    if request.method == 'POST'
+    if request.method == 'POST':
        form =  NewCommentForm(request.POST, request.FILES) 
        if form.is_valid():
         comment = form.save(commit=False)
@@ -44,7 +44,7 @@ def new_comment(request):
 @login_required(login_url='/accounts/login')
 def new_status(request):
     current_user= request.user
-    if request.method == 'POST'
+    if request.method == 'POST':
        form =  NewStatusForm(request.POST, request.FILES) 
        if form.is_valid():
         status = form.save(commit=False)

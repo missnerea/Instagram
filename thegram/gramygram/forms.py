@@ -4,9 +4,9 @@ from .models import Image, Comment
 class NewStatusForm(forms.ModelForm):
     class Meta:
       model=Image 
-      Image=('image','image_caption')
+      fields=('image_image','caption')
 
 class NewCommentForm(forms.ModelForm):
     class Meta:
-     models=Comments
-     field=('comment')   
+     models=Comment
+     fields=('comment',)   
