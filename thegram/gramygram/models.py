@@ -4,9 +4,12 @@ from tinymce.models import HTMLField
 
 # Create your models here.
 class User(models.Model):
+    profile_picture=models.ImageField(upload_to='user/',blank=True)
     username=models.CharField(max_length=20)
     email=models.CharField(max_length=60)
     password = models.CharField(max_length=80)
+    editor = models.ForeignKey(User)
+    
 
 class Image(models.Model):
     
