@@ -26,10 +26,11 @@
     </div>
 
     <div class="Instagram-card-content">
-      <p class="Likes">640 Me gusta</p>
+      <p class="Likes">Likes {{img_item.likes.count}}</p>
       <p><a class="Instagram-card-content-user">
         {% if img_item.image_caption%}
       <href="https://www.instagram.com/rogersbase/">rogersbase</a>
+      {% endif %}
       <p class="comments">Ver los 12 comentarios</p>
       <br><a class="user-comment" href="https://www.instagram.com/chrisobrien64/">chrisobrien64</a> NO WAY! WAY TO GO ROGER MY BOI</br>
       <br><a class="user-comment" href="https://www.instagram.com/artie_mcparty/">artie_mcparty</a> ROGER = BEST NINTENDO FAN.</br>
@@ -42,6 +43,7 @@
       <input class="comments-input" type="text" placeholder="Añade un comentario..."/>
       <a class="footer-action-icons"href="#"><i class="fa fa-ellipsis-h"></i></a>
     </div>
+
     {% endfor %}
   </div>
 </body>
