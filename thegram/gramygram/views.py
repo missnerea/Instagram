@@ -40,3 +40,17 @@ def new_comment(request):
     else:
         form= NewCommentForm()
         return render (request,'new_comment.html',{"form":form})
+
+@login_required(login_url='/accounts/login')
+def new_status(request):
+    current_user= request.user
+    if request.method == 'POST'
+       form =  NewStatusForm(request.POST, request.FILES) 
+       if form.is_valid():
+        status = form.save(commit=False)
+        status.editor=current_user
+        status.save()
+
+    else:
+        form= NewStatusForm()
+        return render (request,'new_status.html',{"form":form})
