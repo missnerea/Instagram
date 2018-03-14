@@ -1,0 +1,95 @@
+{% extends 'base.html'%}
+{% load bootstrap3 %}
+{%block content%}
+{{ block.super }}
+
+<main>
+    <section class="user-info">
+      <img class="avatar" src="https://scontent-dft4-2.cdninstagram.com/t51.2885-19/s320x320/12383281_958683624213102_1060347252_a.jpg" alt="">
+      <div class="user">
+        <h1>leveluptutorials</h1>
+        <div class="user-stats">
+          <span>49 posts</span>
+          <span>950 followers</span>
+          <span>57 following</span>
+        </div>
+        <p>Level Up Tutorials 1000+ free web development and design tutorials created by @stolinski https://www.youtube.com/user/LevelUpTuts leveluptutorials.com</p>
+      </div>
+    </section>
+    <div class="feed-nav">
+      <a href="#">Posts</a>
+      <a href="#">Saved</a>
+    </div>
+    <section class="news-feed">
+      <img src="http://via.placeholder.com/293x293">
+      <img src="http://via.placeholder.com/293x293"><img src="http://via.placeholder.com/293x293"><img src="http://via.placeholder.com/293x293"><img src="http://via.placeholder.com/293x293"><img src="http://via.placeholder.com/293x293"><img src="http://via.placeholder.com/293x293"><img src="http://via.placeholder.com/293x293"><img src="http://via.placeholder.com/293x293">
+    </section>
+  
+  </main>
+  <style>
+      html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #ddd;
+}
+
+.main-nav {
+  > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    > li {
+      display: inline-block;
+    }
+  }
+}
+
+main {
+  max-width: 930px;
+  margin: 4rem auto;
+  border: 3px dashed red;
+}
+
+.user {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 152px;
+  justify-self: center;
+}
+
+.user-info {
+  border: 3px dashed blue;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.news-feed {
+  border: 3px dashed blue;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 28px;
+  img {
+    width: 100%;
+  }
+}
+
+.feed-nav {
+  display: flex;
+  justify-content: center;
+  a {
+    display: block;
+    padding: 10px;
+  }
+  
+  </style>
+
+  {{% endblock %}}

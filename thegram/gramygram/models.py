@@ -9,6 +9,14 @@ class Profile(models.Model):
     email=models.CharField(max_length=60)
     password = models.CharField(max_length=80)
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+
+    def save_profile(self):
+          self.save()
+
+    @classmethod
+    def get_profiles(cls):
+          profiles = Profile.objects.all()
+          return profiles
     
 
 class Image(models.Model):

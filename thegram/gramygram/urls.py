@@ -7,8 +7,10 @@ from . import views
 urlpatterns=[
     url('^$',views.index,name='index.html'),
     url(r'^(?P<slug>[\w-]+)/like/$', ImageLikeToggle.as_view(), name='like-toggle'),
-    url('^comments/(?P<id>\d+)',views.post_comment, name='comment')
+    url('^comments/(?P<id>\d+)',views.post_comment, name='comment'),
+    url(r'^profile/(\d+)',views.profile, name='profile')
 ]
+
 
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

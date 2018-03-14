@@ -39,8 +39,9 @@
                 </form>
                 <!-- search form end -->
             </div>
+            {% if user.is_authenticated %}
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                <a href="" id="instTitle" style=" margin-right:10px; font-size:25px;">
+                <a href="{ % url 'profile' user.id %}" id="instTitle" style=" margin-right:10px; font-size:25px;">
                     <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;
                 </a>
                 <a href="" id="instTitle" style="margin-right:10px;font-size:25px;">
@@ -50,8 +51,16 @@
                     <i class="fa fa-compass" style="font-size:36px;color:red" href=""></i>
                 </a>
 
+                <a href="/logout" id="instTitle" style=" margin-right:10px; font-size:25px;">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                </a>
             </div>
+            {% else %}
+            <li>
+              <a class='btn btn-default' href="/accounts/login">Login</a>
+            </li>
 
+            {% endif %}
 
 
         </div>

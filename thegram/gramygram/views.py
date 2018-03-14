@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Image, Profile, Comment
+from .models import Image, Profile, Comment, User
 from django.views.generic import RedirectView
 from . forms import NewCommentForm, NewStatusForm
 
@@ -57,3 +57,13 @@ def post_comment(request,id):
         form = CommentForm()
         
     return render(request,'new_comment.html',{"title":title,"form":form})
+
+@login_required(login_url='/accounts/login/')
+def profile(request,user):
+    title = 'User Profile'
+    try:
+        profiles = Profile.objects.filter(id=user)
+        photos = Image.objects.filter(user=user)
+    except Image.DoesNotExist:
+        raise Http404
+    return render(request,'profile.html',{"title":title,"profiles":profiles,"photos":photos})
