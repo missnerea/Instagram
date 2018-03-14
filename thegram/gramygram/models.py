@@ -4,17 +4,16 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 
 # Create your models here.
-class User(models.Model):
+class Profile(models.Model):
     profile_picture=models.ImageField(upload_to='user/',blank=True)
-    username=models.CharField(max_length=20)
     email=models.CharField(max_length=60)
     password = models.CharField(max_length=80)
-    editor = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     
 
 class Image(models.Model):
     
-    user = models.ForeignKey(User,null = True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)    
     image_image =models.ImageField(upload_to='images/',blank=True)
     caption=models.CharField(max_length=100)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True,related_name='image_likes')
@@ -28,16 +27,26 @@ class Image(models.Model):
         self.save
 
     
-
 class Comment(models.Model):
-    comment = models.CharField(max_length=200)
-    user = models.ForeignKey(User, null=True)
-    image_image = models.ForeignKey(Image, null=True)
-    time_comment = models.DateTimeField(auto_now_add=True, null=True)
-    created_date = models.DateTimeField(default=timezone.now)
+      comments = models.CharField(max_length=60,blank=True,null=True)
+      comment_time = models.DateTimeField(auto_now_add=True)
+      user = models.ForeignKey(User,on_delete=models.CASCADE, blank=True)
+      pic = models.ForeignKey(Image,on_delete=models.CASCADE, related_name='comments',blank=True)
 
-    class Meta:
-       ordering=['-time_comment'] 
+      def __str__(self):
+            return self.comments
 
-    def __str__(self):
-        return self.text
+      class Meta:
+            ordering = ['-comment_time']
+
+      def save_comment(self):
+            return self.save()
+
+      def delete_comment(self):
+            return self.delete()
+
+      @classmethod
+      def get_comments(cls):
+            comment = Comment.objects.all()
+            return comment
+

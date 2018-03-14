@@ -7,7 +7,7 @@ from . import views
 urlpatterns=[
     url('^$',views.index,name='index.html'),
     url(r'^(?P<slug>[\w-]+)/like/$', ImageLikeToggle.as_view(), name='like-toggle'),
-    url(r'^new/comment$', views.new_comment, name='new-comment')
+    url('^comments/(?P<id>\d+)',views.post_comment, name='comment')
 ]
 
 if settings.DEBUG:

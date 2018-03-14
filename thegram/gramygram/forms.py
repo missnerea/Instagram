@@ -8,5 +8,5 @@ class NewStatusForm(forms.ModelForm):
 
 class NewCommentForm(forms.ModelForm):
     class Meta:
-     models=Comment
+     models= Comment
      fields=('comment',)   

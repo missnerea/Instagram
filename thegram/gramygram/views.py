@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Image
+from .models import Image, Profile, Comment
 from django.views.generic import RedirectView
 from . forms import NewCommentForm, NewStatusForm
 
@@ -28,20 +28,6 @@ class ImageLikeToggle(RedirectView):
         return url_
 
 @login_required(login_url='/accounts/login')
-def new_comment(request):
-    current_user= request.user
-    if request.method == 'POST':
-       form =  NewCommentForm(request.POST, request.FILES) 
-       if form.is_valid():
-        comment = form.save(commit=False)
-        comment.editor=current_user
-        comment.save()
-
-    else:
-        form= NewCommentForm()
-        return render (request,'new_comment.html',{"form":form})
-
-@login_required(login_url='/accounts/login')
 def new_status(request):
     current_user= request.user
     if request.method == 'POST':
@@ -54,3 +40,20 @@ def new_status(request):
     else:
         form= NewStatusForm()
         return render (request,'new_status.html',{"form":form})
+
+def post_comment(request,id):
+    title = 'new comment'
+    post = get_object_or_404(Image, id=id)
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewCommentForm(request.POST)
+        if form.is_valid():
+            post_comment = form.save(commit=False)
+            post_comment.user = current_user
+            post_comment.pic = post
+            post_comment.save()
+            return redirect('index')
+    else:
+        form = CommentForm()
+        
+    return render(request,'new_comment.html',{"title":title,"form":form})

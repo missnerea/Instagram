@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'thegram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'thegram',
+        'NAME': 'instagram',
         'USER': 'missnerea',
     'PASSWORD':'Ea0712343800',
     }
