@@ -34,6 +34,10 @@ class Comment(models.Model):
     user = models.ForeignKey(User, null=True)
     image_image = models.ForeignKey(Image, null=True)
     time_comment = models.DateTimeField(auto_now_add=True, null=True)
+    created_date = models.DateTimeField(default=timezone.now)
 
     class Meta:
        ordering=['-time_comment'] 
+
+    def __str__(self):
+        return self.text
