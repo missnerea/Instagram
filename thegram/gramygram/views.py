@@ -59,11 +59,11 @@ def post_comment(request,id):
     return render(request,'new_comment.html',{"title":title,"form":form})
 
 @login_required(login_url='/accounts/login/')
-def profile(request,user):
+def profile(request):
     title = 'User Profile'
     try:
-        profiles = Profile.objects.filter(id=user)
-        photos = Image.objects.filter(user=user)
+        profiles = Profile.objects.filter()
+        photos = Image.objects.filter()
     except Image.DoesNotExist:
         raise Http404
     return render(request,'profile.html',{"title":title,"profiles":profiles,"photos":photos})

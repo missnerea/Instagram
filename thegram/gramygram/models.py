@@ -4,11 +4,13 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 
 # Create your models here.
+
+
 class Profile(models.Model):
     profile_picture=models.ImageField(upload_to='user/',blank=True)
     email=models.CharField(max_length=60)
     password = models.CharField(max_length=80)
-    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    user = models.OnetoOneField(User,on_delete=models.CASCADE,null=True)
 
     def save_profile(self):
           self.save()
