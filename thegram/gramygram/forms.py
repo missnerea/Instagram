@@ -1,5 +1,5 @@
 from django import forms
-from .models import Image, Comment
+from .models import Image, Comment , User , Profile
 #......
 class NewStatusForm(forms.ModelForm):
     class Meta:
@@ -9,4 +9,19 @@ class NewStatusForm(forms.ModelForm):
 class NewCommentForm(forms.ModelForm):
     class Meta:
      models= Comment
-     fields=('comment',)   
+     fields=('comment',)
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('profile_picture', 'bio', 'email')
+
+class PostPictureForm(ModelForm):
+    class Meta:
+        model = IGPost
+        fields = ['title', 'image']

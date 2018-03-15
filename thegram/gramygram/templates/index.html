@@ -5,18 +5,20 @@
 
 <div class="feeds">
     <div class="feed">
-            {% for photo in gramygram %}
+            {% if profiles.profile_picture %}
+            {% for img_item in img %}
+            {% for profile_item in profile %}
       <div class="feed-header">
-        <a class="feed-author-img"><img src="{{photo.profile_picture.url}}"/></a>
-        <a class="feed-author-name" href="photo.user.url"></a>
+        <a class="feed-author-img"><img src="{{profile_item.profile_picture.url|default_if_none:'#'}}" height="100px" width="100px"></a>
+        <a class="feed-author-name" href="profile_item.user.url"></a>
         <a class="feed-time">3h</a>
       </div>
       <div class="feed-image">
-        <img src="{{photo.image_image.url}}" />
+        <img src="{{img_item.image_image.url}}" />
       </div>
       
       <div class="feed-body">
-         <p> {{photo_caption.url}}</p> 
+         <p> {{img_item.caption}}</p> 
       </div>
       <div class="feed-footer">
         <i class="fa fa-heart-o nx"></i>
@@ -24,6 +26,8 @@
         <i class="fa fa-sort-down nz"></i>
       </div>
       {% endfor %}
+      {% endfor %}
+      {% endif %}
     </div>
     <style>
     body {
@@ -40,9 +44,8 @@
 }
 
 .feed-image {
-  img {
     max-width: 100%;
-  }
+  
 }
 
 .feed {
@@ -60,20 +63,19 @@
   display: flex;
   padding: 1em;
   align-items: baseline;
+} 
   
-  
-  .feed-author-name {
+.feed-author-name {
     color: #444;
     flex-grow: 1;
     margin: .5em;
     text-decoration: none;
   }
   
-  .feed-time {
+.feed-time {
     color: #ddd;
     text-decoration: none;
   }
-}
 
 .feed-body {
   padding: 1.5em;
@@ -109,11 +111,9 @@
   color: red;
 }
 .feed-author-img {
-  img {
     width: 30px;
     height: 30px;
     border-radius: 100px; 
-  }
 }
     </style>
 {% endblock %}

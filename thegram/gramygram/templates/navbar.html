@@ -41,14 +41,8 @@
             </div>
             {% if user.is_authenticated %}
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                <a href="{ % url 'profile' user.id %}" id="instTitle" style=" margin-right:10px; font-size:25px;">
+                <a href="{% url 'profile' %}" id="instTitle" style=" margin-right:10px; font-size:25px;">
                     <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;
-                </a>
-                <a href="" id="instTitle" style="margin-right:10px;font-size:25px;">
-                    <span class="glyphicon glyphicon-heart-empty"></span>&nbsp;&nbsp;&nbsp;
-                </a>
-                <a href="">
-                    <i class="fa fa-compass" style="font-size:36px;color:red" href=""></i>
                 </a>
 
                 <a href="/logout" id="instTitle" style=" margin-right:10px; font-size:25px;">

@@ -2,7 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Image, Profile, Comment, User
 from django.views.generic import RedirectView
-from . forms import NewCommentForm, NewStatusForm
+from . forms import NewCommentForm, NewStatusForm, UserForm , ProfileForm
+from django.db import transaction
 
 
 # Create your views here.
@@ -10,8 +11,10 @@ from . forms import NewCommentForm, NewStatusForm
 def index(request):
     title='Welcome to Instagram'
     img = Image.this_image()
-
-    return render(request,'index.html',{"img":img})
+    profile = Profile.this_profile()
+    current_user = request.user
+    
+    return render(request,'index.html',{"img":img, "profile":profile})
 
 class ImageLikeToggle(RedirectView):
      def get_redirect_url(self, *args, **kwargs):
@@ -61,9 +64,29 @@ def post_comment(request,id):
 @login_required(login_url='/accounts/login/')
 def profile(request):
     title = 'User Profile'
-    try:
-        profiles = Profile.objects.filter()
-        photos = Image.objects.filter()
-    except Image.DoesNotExist:
-        raise Http404
-    return render(request,'profile.html',{"title":title,"profiles":profiles,"photos":photos})
+    profiles = Profile.objects.filter(user_id=request.user.id)
+
+    
+    return render(request,'profile.html',{"title":title,"profiles":profiles})
+
+
+@login_required
+@transaction.atomic
+def edit_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, _('Your profile was successfully updated!'))
+            return redirect('settings:profile')
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profiles/profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
