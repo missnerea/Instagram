@@ -10,6 +10,7 @@ urlpatterns=[
     url('^comments/(?P<id>\d+)',views.post_comment, name='comment'),
     url('^profile/$',views.profile, name='profile'),
     url(r'^edit/profile/$',views.edit_profile, name = 'edit-profile'),
+    url(r'^post/$', views.post_picture, name='post_picture')
 ]
 
 

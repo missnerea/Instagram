@@ -23,5 +23,5 @@ class ProfileForm(forms.ModelForm):
 
 class PostPictureForm(ModelForm):
     class Meta:
-        model = IGPost
-        fields = ['title', 'image']
+        model = Image
+        fields = ['caption', 'image_image']
