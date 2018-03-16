@@ -21,7 +21,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('profile_picture', 'bio', 'email')
 
-class PostPictureForm(ModelForm):
+class PostPictureForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ['caption', 'image_image']

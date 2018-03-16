@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Image, Profile, Comment, User
 from django.views.generic import RedirectView
-from . forms import NewCommentForm, NewStatusForm, UserForm , ProfileForm
+from . forms import NewCommentForm, NewStatusForm, UserForm , ProfileForm , PostPictureForm
 from django.db import transaction
 
 
@@ -11,7 +11,7 @@ from django.db import transaction
 def index(request):
     title='Welcome to Instagram'
     img = Image.this_image()
-    profile = Profile.this_profile()
+    profile = Profile.get_profile()
     current_user = request.user
     
     return render(request,'index.html',{"img":img, "profile":profile})
@@ -90,3 +90,28 @@ def edit_profile(request):
         'user_form': user_form,
         'profile_form': profile_form
     })
+
+@login_required(login_url='/accounts/login/')
+def post_picture(request):
+    test = 'Working'
+    current_user = request.user
+    profiles = Profile.objects.all()
+    for profile in profiles:
+        if profile.user.id == current_user.id:
+            if request.method == 'POST':
+                form = PostPictureForm(request.POST, request.FILES)
+                if form.is_valid():
+                    post = form.save(commit=False)
+                    post.username = current_user
+                    post.profile = profile
+                    post.save()
+                    return redirect('home')
+            else:
+                form = PostPictureForm()
+                content = {
+                    "test": test,
+                    "post_form": form,
+                    "user": current_user
+                }
+    return render(request, 'post_picture.html')
+

@@ -18,7 +18,7 @@ class Profile(models.Model):
           self.save()
 
     @classmethod
-    def this_profile(cls):
+    def get_profile(cls):
           profile = cls.objects.all()
           return profile
 
@@ -69,6 +69,8 @@ class Comment(models.Model):
       def get_comments(cls):
             comment = Comment.objects.all()
             return comment
+
+      
 
 
 def Create_profile(sender, **kwargs):

@@ -5,29 +5,34 @@
 
 <div class="feeds">
     <div class="feed">
-            {% if profiles.profile_picture %}
+            
             {% for img_item in img %}
-            {% for profile_item in profile %}
+            
       <div class="feed-header">
+          {% for profile_item in profile %}
+          {% if profiles.profile_picture %}
         <a class="feed-author-img"><img src="{{profile_item.profile_picture.url|default_if_none:'#'}}" height="100px" width="100px"></a>
         <a class="feed-author-name" href="profile_item.user.url"></a>
+        {% endif %}
+        {% endfor %}
         <a class="feed-time">3h</a>
       </div>
       <div class="feed-image">
-        <img src="{{img_item.image_image.url}}" />
+        <img src="{{img_item.image_image.url}}" width="500px" />
       </div>
       
       <div class="feed-body">
          <p> {{img_item.caption}}</p> 
+         {% endfor %}
       </div>
       <div class="feed-footer">
+        {% for comment_item in comment %}
         <i class="fa fa-heart-o nx"></i>
-        <input type="text" class="ny" placeholder="Add a comment..."/>
+        <input type="text" class="ny" placeholder="Add a comment">
         <i class="fa fa-sort-down nz"></i>
+        {% endfor %}
       </div>
-      {% endfor %}
-      {% endfor %}
-      {% endif %}
+      
     </div>
     <style>
     body {
@@ -40,12 +45,11 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
-  /* justify-content: center; */
+  justify-content: center; 
 }
 
 .feed-image {
     max-width: 100%;
-  
 }
 
 .feed {
