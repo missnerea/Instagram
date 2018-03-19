@@ -55,9 +55,9 @@ def post_comment(request,id):
             post_comment.user = current_user
             post_comment.pic = post
             post_comment.save()
-            return redirect('index')
+            return redirect('index.html')
     else:
-        form = CommentForm()
+        form = NewCommentForm()
         
     return render(request,'new_comment.html',{"title":title,"form":form})
 
@@ -94,8 +94,6 @@ def edit_profile(request):
 @login_required(login_url='/accounts/login/')
 def upload(request):
     current_user = request.user         
-    # profiles = Profile.get_profile()
-    # for profile in profiles:
       
     if request.method == 'POST':
         form = PostPictureForm(request.POST,request.FILES)

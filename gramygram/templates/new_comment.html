@@ -3,8 +3,21 @@
 {%block content%}
 
 <h1>New comment</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Add comment</button>
+<div class="col-md-8 col-lg-8">
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% bootstrap_form form  %}
+
+        <input type="submit" class="btn btn-success btn-lg" value="Post">
+
     </form>
+
+</div>
+
+<!-- Empty Div -->
+<div class="col-md-2 col-lg-2">   
+</div> 
+
 {% endblock %}
