@@ -30,11 +30,12 @@
       {% for comment_item in comment %}
         
         
-
+      <div class="container">
           <div class='comment-section'>
         <p><strong>{{comment.user}}</strong> {{comment.comments}}</p>            
               <input type='text' id='cmnt' placeholder='Add a comment...' href="{% url 'comment' pk=image.pk %}">
               <span class='dot02'></span>
+            </div>
             </div>
   {% endfor %
       {% endfor %}
