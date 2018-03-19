@@ -103,7 +103,7 @@ def upload(request):
             upload = form.save(commit=False)
             upload.user = current_user
             upload.save()
-            return redirect('index')
+            return redirect('index.html')
         else:
             return HttpResponse('You dont have an account with us')
     else:
