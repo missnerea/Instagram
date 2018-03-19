@@ -3,7 +3,7 @@
 {%block content%}
 {{ block.super }}
 
-<div class="feeds">
+<!--<div class="feeds">
     <div class="feed">
             
             {% for img_item in img %}
@@ -124,5 +124,50 @@
     height: 30px;
     border-radius: 100px; 
 }
-    </style>
+    </style>-->
+    <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-9 ml-md-auto">
+          {% for img_item in <img src="" alt=""> %}
+          <div class="container ml-3 mt-3 mb-3 display" style="background-color:#ffffff; border: 1px solid #e6e6e6; border-radius: 5px;">
+            <div class="row">
+              <div class="col- display p-4" style="white-space:nowrap">
+                {% if profiles.profile_picture %}
+    
+    <img src="{{profile_item.profile_picture.url|default_if_none:'#'}}" alt="" style="height:40px;width:40px; border-radius:50%; display:inline;">
+    <p class="ml-2" style="display:inline; white-space:nowrap;"><strong>profile_item.user.url</strong></p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col- mx-auto">
+    <img src="{{img_item.image_image.url}}" alt="" class="img-fluid">
+    </div>
+    </div>
+    <div class="icons mt-3">
+    <a id="heart" class="post-likes" data-post-id="{{photo.id}}" style="color:inherit;" href="{% url 'like' operation='like' pk=photo.pk %}">
+    <i id='like-{{photo.id}}' data-post-id='like-{{photo.id}}'   class="fa fa-heart fa-2x ml-3" aria-hidden="true" style="display: inline-block; font-size:23px"></i>
+    </a>
+    
+    <a href="{% url 'comment' pk=photo.pk %}" style="color:inherit;"><i class="fa fa-comment-o fa-2x ml-4" style="font-size:23px"></i></a>
+    
+    <a href="#" style="color:inherit;"><i class="fa fa-bookmark-o fa-2x float-right mr-4"></i></a>
+    </div>
+    <div class="likes">
+    <p class="ml-4 mt-3"><strong class="like-count" data-likeId="{{photo.id}}">{{photo.likes}}</strong><strong> likes</strong></p>
+    <p class="p-3 ml-2">{{img_item.caption}}</p>
+    </div>
+    <div class="comments ml-4">
+    {% for comment_item in comment %}
+    <p><strong>{{comment_item.user}}</strong> {{comment_item.comment}}</p>
+    {% endfor %}
+    <p style="color:#a6a6a6;">{{photo.time|timesince}}</p>
+    </div>
+    <hr>
+    <div class="make-comment mb-3">
+    <a class="p-3" href="{% url 'comment' pk=photo.pk %}" style="color:#a6a6a6;">Add Comment</a>
+    <a href="#" style="color:#a6a6a6;"><i class="fas fa-ellipsis-h fa-lg float-right mr-4"></i></a>
+    </div>
+    </div>
+    </div>
+    </div>
 {% endblock %}
