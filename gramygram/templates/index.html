@@ -3,7 +3,7 @@
 {%block content%}
 {{ block.super }}
 
-<div class="feeds">
+<!--<div class="feeds">
     <div class="feed">
             
             {% for img_item in img %}
@@ -37,89 +37,166 @@
       {% endfor %}
     </div>
     <style>
-    body {
-  background-color: #fafafa;
-  font-family: "Gotham Rounded", "Lato", san-serif;
-}
+    </style> -->
+    {% for img_item in img %}
+    <div class='top-insta'>
+        {% for profile_item in profile %}
+          {% if profiles.profile_picture %}
+      <img src='{{profile_item.profile_picture.url|default_if_none:'#'}}'>
+      <a href='profile_item.user.url' target='_blank' class='user'>
+</a>
+      <span class= 'dot'></span>
+    </div>
+    <div class='post'>
+        <div class="overlay">
+        <span></span>
+        </div>
+      <img src='{{img_item.image_image.url}}' >
+ </div>
+    <div class='footer'>
+      
+      <div class='react'>
+        <a href='#' role='button'><span class='love'></span></a>
+        <a href='#' role='button'><span class='comment'></span></a>
+        <a href='#' role='button'><span class='save'></span></a>
+        
+      </div>
+      
+      <div class='caption'>
+        <a href='profile_item.user.url'></a><span>{{img_item.caption}}</span>
+      </div>
+      {% endfor %}
 
-.feeds {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-around;
-  justify-content: center; 
+      {% for comment_item in comment %}
+      
+      <div class='comment-section'>
+          <p><strong>{{comment.user}}</strong> {{comment.comments}}</p>
+        <input type='text' id='cmnt' placeholder='Add a comment...' href="{% url 'comment' pk=image.pk %}">
+        
+        <span class='dot02'></span>
+      </div>
+        
+    </div>
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+  <style>
+    .top-insta {
+    position: relative;
+    padding: 16px;
+    height: 60px;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
 }
-
-.feed-image {
-    max-width: 100%;
-}
-
-.feed {
-  border-radius: 3px;
-  box-sizing: border-box;
-  background-color: #fff;
-  border: 1px solid #efefef;
-  width: 500px;
-  margin: .5em;
-  align-self: center;
-  flex-basis: 450px; 
-}
-
-.feed-header {
-  display: flex;
-  padding: 1em;
-  align-items: baseline;
-} 
-  
-.feed-author-name {
-    color: #444;
-    flex-grow: 1;
-    margin: .5em;
-    text-decoration: none;
-  }
-  
-.feed-time {
-    color: #ddd;
-    text-decoration: none;
-  }
-
-.feed-body {
-  padding: 1.5em;
-  white-space: normal;
-}
-
-.feed-footer {
-  display: flex;
-  border-top: 1px solid #eee;
-  margin: 0 1.5em 0 1.5em ;
-  padding: 1em 0 1em 0;
-  align-items: center;
-}
-
-.ny {
-  /* input box */
-  border: 0px;
-  outline: none;
-  font-family: 'Lato', san-serif;
-  margin: .5em;
-  flex-grow: 1;
-}
-.nx, .nz, .mx {
-  color: #ddd;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-.nz {
-  align-self: flex-start;
-  margin-top: 0.2em;
-}
-.mx {
-  color: red;
-}
-.feed-author-img {
+.top-insta img {
     width: 30px;
     height: 30px;
-    border-radius: 100px; 
+    border-radius: 50%;
+    -ms-flex-item-align: center;
+    align-self: center;
 }
-    </style>
+.top-insta .user {
+    margin-left: 10px;
+    -ms-flex-item-align: center;
+    align-self: center;
+    font-size: 13px;
+    font-weight: 600
+}
+.dot {
+    cursor: pointer;
+    background-image: url(https://goo.gl/NLUdLH);
+    background-repeat: no-repeat;
+    background-position: -434px -345px;
+    height: 16px;
+    width: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-item-align: center;
+    align-self: center;
+    right: 16px;
+    position: absolute;
+    text-align: right;
+}
+.post {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.post img {
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}
+.footer {
+    padding: 0 16px;
+}
+.react {
+    margin-top: 4px;
+    position: relative;
+}
+.react a {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.react a:last-child {
+    margin-right: 0
+}
+.react .love {
+    background-image: url(https://goo.gl/NLUdLH);
+    background-position: -408px -156px;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+}
+.react .comment {
+    background-image: url(https://goo.gl/NLUdLH);
+    background-position: -408px -26px;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+}
+.react .save {
+     background-image: url(https://goo.gl/NLUdLH);
+    background-repeat: no-repeat;
+    background-position: -104px -389px;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+}
+.caption {
+    color: #585858;
+    font-size: 13px;
+    margin: 16px 0;
+}
+.caption a {
+    margin-right: .3em;
+    font-weight: 600;
+}
+.comment-section {
+    position: relative;
+    border-top: 1px solid #efefef;
+    padding: 26px 26px 26px 0;
+    margin-top: 4px;
+    overflow: hidden
+}
+#cmnt {
+    outline: none;
+    overflow-x: scroll;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #262626;
+    width: 100%;
+    height: 18px;
+    max-height: 80px;
+    resize: none;
+}
+
+  </style>
 {% endblock %}
