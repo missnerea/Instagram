@@ -50,115 +50,15 @@
     </div>
     {% endif %}
     {% endfor %} -->
-    <div class="container-fluid">
-        <ul>
-        
-          <li>
-            <div class="card card-green col-md-12">
-              <p class="card-question">how old was the oldest person ever?</p>
-              <div class="card-separator"></div>
-              <p style="text-align:justify;">The oldest verified person on record was French woman <b>Jeanne Calment</b> (1875–1997), who lived to the age of <b>122 years, 164 days.</b></p>
-              <a href="https://en.wikipedia.org/wiki/List_of_the_verified_oldest_people">View Source</a>
-              <div class="card-separator"></div>
-            </div>
-
-            <style>
-              $red : #e74c3c;
-$green: #16a085;
-$blue: #3498db;
-html,
-body {
-  background: #222;
-}
-
-ul {
-  -moz-column-count: 3;
-  -moz-column-gap: 50px;
-  -webkit-column-count: 3;
-  -webkit-column-gap: 50px;
-  column-count: 3;
-  column-gap: 50px;
-}
-
-li {
-  overflow: hidden;
-}
-
-.card {
-  margin-top: 50px;
-  font-family: 'Roboto', sans-serif;
-  color: #444;
-  border: 1px solid #999;
-  border-radius: 4px;
-  background: #eee;
-  text-align: center;
-  padding-top: 30px;
-  float: left;
-  :before {
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    background-color: #eee;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    font-size: 28px;
-    font-style: normal;
-    left: 50%;
-    line-height: 60px;
-    position: absolute;
-    top: -30px;
-    width: 60px;
-  }
-  .card-question {
-    margin: 20px 0 20px;
-    font-size: 150%;
-  }
-  .card-separator {
-    width: 100%;
-    margin: 10px 0 10px 0;
-  }
-  a {
-    text-decoration: none;
-    color: #7f8c8d;
-  }
-}
-
-.card-red {
-  border-top: 4px solid $red;
-  :before {
-    color: $red;
-    content: "\f0f5";
-    font-family: 'FontAwesome';
-  }
-  .card-separator {
-    border: 1px solid $red;
-  }
-  .card-answer-separator {
-    border: 1px dotted $red;
-  }
-}
-
-.card-green {
-  border-top: 4px solid $green;
-  :before {
-    color: $green;
-    content: "\f007";
-    font-family: 'FontAwesome';
-  }
-  .card-separator {
-    border: 1px solid $green;
-  }
-}
-
-.card-blue {
-  border-top: 4px solid $blue;
-  :before {
-    color: $blue;
-    content: "\f0ac";
-    font-family: 'FontAwesome';
-  }
-  .card-separator {
-    border: 1px solid $blue;
-  }
-}
-            </style>
+    <div class="container">
+        <h2>Card Image</h2>
+        <p>Image at the top (card-img-top):</p>
+        <div class="card" style="width:400px">
+          <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
+          <div class="card-body">
+            <h4 class="card-title">John Doe</h4>
+            <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+            <a href="#" class="btn btn-primary">See Profile</a>
+          </div>
+        </div>
 {% endblock %}
