@@ -92,26 +92,21 @@ def edit_profile(request):
     })
 
 @login_required(login_url='/accounts/login/')
-def post_picture(request):
-    test = 'Working'
-    current_user = request.user
-    profiles = Profile.objects.all()
-    for profile in profiles:
-        if profile.user.id == current_user.id:
-            if request.method == 'POST':
-                form = PostPictureForm(request.POST, request.FILES)
-                if form.is_valid():
-                    post = form.save(commit=False)
-                    post.username = current_user
-                    post.profile = profile
-                    post.save()
-                    return redirect('home')
-            else:
-                form = PostPictureForm()
-                content = {
-                    "test": test,
-                    "post_form": form,
-                    "user": current_user
-                }
-    return render(request, 'post_picture.html')
+def upload(request):
+    current_user = request.user         
+    # profiles = Profile.get_profile()
+    # for profile in profiles:
+      
+    if request.method == 'POST':
+        form = NewPictureForm(request.POST,request.FILES)
+        if form.is_valid():
+            upload = form.save(commit=False)
+            upload.user = current_user
+            upload.save()
+            return redirect('index')
+        else:
+            return HttpResponse('You dont have an account with us')
+    else:
+        form = NewPictureForm()
+    return render(request,'post_picture.html',{"user":current_user,"form":form})
 

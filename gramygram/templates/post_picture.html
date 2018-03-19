@@ -2,12 +2,38 @@
 {% load bootstrap3 %}
 {%block content%}
 {{ block.super }}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
+<div class="container" style="margin-top:10%;"
+  <div class="row">
+    <!-- Empty div -->
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      {% if form.errors %}
+        <p> your images could not be upoaded  </p>
+      {% endif %}
+      <div class="panel panel-default">
 
-            Select image to upload:
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <button type="submit">Upload</button>
-        </form>       
+        <div class="panel-heading">
+          <h3 class="text-center">Upload Image</h3>
+        </div>
+        <div class="panel-body">
+
+          <form  action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary btn-sm" value="Upload">
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
+          </form>
+          {% block scripts %}
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          {% bootstrap_javascript %} {% endblock %}
+        </div>
+      </div>
+    </div>
+    <!-- empty div -->
+    <div class="col-md-4"></div>
+  </div>
+</div>      
 {% endblock %}
