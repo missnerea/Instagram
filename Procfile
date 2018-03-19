@@ -1,1 +1,1 @@
-web: gunicorn​ thegram.wsgi​
+web: gunicorn thegram.wsgi
