@@ -55,8 +55,9 @@
               <div id="upload-div"></div>{% for img_item in img %}
               <div class="img-div">
                     <div class="header">
+                        {% if profiles.profile_picture %}
                           <div class="row">
-                          <a href="{% url 'profile' profile_picture.user.id %}"><span><img class="img-circle" src="static/images/image1.svg"></span><span>{{pic.profile.user}}</span></a>
+                          <a href="{{profile_item.profile_picture.url|default_if_none:'#'}}"><span><img class="img-circle" src="static/images/image1.svg"></span><span>{{pic.profile.user}}</span></a>
                           </div>
                     </div><img src="{{img_item.img.url}}">
                     <div class="icons">
@@ -74,6 +75,7 @@
               </div>
               {% endfor %}
         </div>
+        {% endif %}
   </div>
   <style>
 
