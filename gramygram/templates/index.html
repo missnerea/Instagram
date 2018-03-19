@@ -27,10 +27,14 @@
       </div>
       <div class="feed-footer">
         
-        <i class="fa fa-heart-o nx"></i>
+        
         {% for comment_item in comment %}
-        <p><strong>{{comment.user}}</strong> {{comment.comments}}</p>
-          <a href="{% url 'comment' pk=image.pk %}" style="color:inherit;">Add Comment<i class="fa fa-comment-o fa-2x ml-4"></i></a>
+
+          <div class='comment-section'>
+        <p><strong>{{comment.user}}</strong> {{comment.comments}}</p>            
+              <input type='text' id='cmnt' placeholder='Add a comment...' href="{% url 'comment' pk=image.pk %}">
+              <span class='dot02'></span>
+            </div>
     </div>
   {% endfor %
       </div>
