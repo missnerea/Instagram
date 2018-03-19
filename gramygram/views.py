@@ -98,7 +98,7 @@ def upload(request):
     # for profile in profiles:
       
     if request.method == 'POST':
-        form = NewPictureForm(request.POST,request.FILES)
+        form = PostPictureForm(request.POST,request.FILES)
         if form.is_valid():
             upload = form.save(commit=False)
             upload.user = current_user
@@ -107,6 +107,6 @@ def upload(request):
         else:
             return HttpResponse('You dont have an account with us')
     else:
-        form = NewPictureForm()
+        form = PostPictureForm()
     return render(request,'post_picture.html',{"user":current_user,"form":form})
 
