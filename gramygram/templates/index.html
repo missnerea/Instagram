@@ -26,8 +26,6 @@
          {% endfor %}
       </div>
       {% for comment_item in comment %}
-
-      <div class="feed-footer">
         
         
 
@@ -36,7 +34,6 @@
               <input type='text' id='cmnt' placeholder='Add a comment...' href="{% url 'comment' pk=image.pk %}">
               <span class='dot02'></span>
             </div>
-    </div>
   {% endfor %
       </div>
       {% endfor %}
