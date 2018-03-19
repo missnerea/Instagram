@@ -29,11 +29,12 @@
         
         <i class="fa fa-heart-o nx"></i>
         {% for comment_item in comment %}
-        <input type="text" class="ny" placeholder="Add a comment">
-        <i class="fa fa-sort-down nz"></i>
-        {% endfor %}
+        <p><strong>{{comment.user}}</strong> {{comment.comments}}</p>
+          <a href="{% url 'comment' pk=image.pk %}" style="color:inherit;">Add Comment<i class="fa fa-comment-o fa-2x ml-4"></i></a>
+    </div>
+  {% endfor %
       </div>
-      
+      {% endfor %}
     </div>
     <style>
     body {
