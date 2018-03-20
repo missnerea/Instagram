@@ -1,33 +1,45 @@
 {% extends 'base.html'%}
 {% load bootstrap3 %}
-{%block content%}
+{% block content%}
 {{ block.super }}
-<div class="container mt-2 ">
-    <div class="row">
-      <div class="col- mx-auto p-5 mt-2" style="background-color:#ffffff; border: 1px solid #e6e6e6;">
-        {% for profile_item in profile %}
-        <div class="profile p-4" style="white-space:nowrap">
-          <img src="{{profile_item.profile_picture.url}}" alt="" style="height:70px;width:70px; border-radius:50%; display:inline;">
-          <p class="ml-2" style="display:inline; white-space:nowrap; font-size:25px;"><strong>{{profile.first_name}} {{profile.last_name}}</strong></p>
-          <button class="btn btn-primary ml-3" ><a href="{% url 'post' %}" style="display:inline; white-space:nowrap; color:#ffffff;">New Post<i class="fa fa-plus-square-o fa-2x ml-2 fa-lg ml-1 mt-1" aria-hidden="true"></i></a></button>
-  
-          <p class="text-center" style="font-size:20px"><span style="font-weight:bolder">0</span> Followers</span> <span style="margin-left:20px"> <span style="font-weight:bolder">0</span> Following</span>
-          </p>
-          <hr>
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
+<div class="row mt-5">
 
-  <div class="container mt-5">
-    <div class="row">
-      {% for img_item in img %}
-      <div class="col-4 m-2">
-        <img src="{{img_item.image_image.url}}" alt="" class="img-fluid">
+
+    <div class="container mb-5 pb-5">
+      {% for profile_item in profile %}
+      <div class="row">
+        <div class="col-md-4">
+          {% if profile.profile_picture %}
+          <img src="{{profile.profile_picture.url}}" class="img-circle" alt="{{profile_item.user.username}} profile pic"> {% endif %}
+        </div>
+        <div class="col-md-8">
+          <p><b>Username: </b> {{profile_item.user.username}}</p>
+          <p><b>e-mail: </b> {{profile_item.user.email}}</p>
+          <p><b>Bio: </b>{{profile_item.bio}}</p>
+          {% if profile_item.user.id == user.id%}
+          {# <p><a href="#" title="under development ..."><i class="fa fa-cog fa-spin"></i> Edit profile</a></p> #}
+          <p><a href="{% url 'editprofile'%}"><i class="fa fa-cog fa-spin"></i> Edit profile</a></p>
+          <p><a href="/logout" title="logout">Logout  <i class="fa fa-sign-out mr-4 pr-3"></i></a>
+          </p>
+          {% endif %}
+        </div>
+  
+      </div>
+      {% endfor %}
+      <div class="row">
+        {% for img_item in img %}
+        <div class="col-md-3 ml-5 mr-4">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{img_item.image_image.url}}" alt="{{img_item.caption}} photo"style="height: 18rem;">
+              <p style="font-size:12px;" class="ml-2 mt-2"><span class="textsize">{{img_item.user.username}} </span>: {{img_item.caption}}</p>
+          </div>
+        </div>
+        {% endfor%}
       </div>
     </div>
-      {% endfor %}  
-    </div>
+  
+  
+  
+  </div>
     {% endblock %}
   

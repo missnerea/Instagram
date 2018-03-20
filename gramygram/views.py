@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Image, Profile, Comment, User
 from django.views.generic import RedirectView
@@ -12,9 +12,10 @@ def index(request):
     title='Welcome to Instagram'
     img = Image.this_image()
     profile = Profile.get_profile()
+    comment = Comment.get_comments()
     current_user = request.user
     
-    return render(request,'index.html',{"img":img, "profile":profile})
+    return render(request,'index.html',{"img":img, "profile":profile, "comment":comment})
 
 class ImageLikeToggle(RedirectView):
      def get_redirect_url(self, *args, **kwargs):

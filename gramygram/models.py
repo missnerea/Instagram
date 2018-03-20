@@ -40,7 +40,7 @@ class Image(models.Model):
          
     @classmethod
     def this_image(cls):
-        img = cls.objects.all()
+        img = Image.objects.all()
         return img 
 
     def save_image(self):
